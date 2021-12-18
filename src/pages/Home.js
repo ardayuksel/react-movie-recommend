@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Form, Button, Container, Col } from "react-bootstrap";

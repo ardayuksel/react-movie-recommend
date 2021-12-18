@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import loading from "../loading.gif";
 import { filmTypes } from "../filmTypes";
@@ -23,7 +23,6 @@ const Results = () => {
   const [totalPagesFound, setTotalPagesFound] = useState(() => {
     return Math.floor(Math.random() * 20);
   });
-
   const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_WEATHER_API_KEY}`;
   const MOVIE_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&&vote_average.gte=${imdb}&with_genres=${filmType}`;
   const MOVIE_API_URL_RANDOM_PAGE = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&&page=${randomMoviePage}&vote_average.gte=${imdb}&with_genres=${filmType}`;
@@ -167,16 +166,6 @@ const Results = () => {
     }
     setRandomMoviePage(randomPage);
   };
-
-  const getOneRandomMovie = async () => {
-    const randomResult = await axios
-      .get(MOVIE_API_URL_RANDOM_PAGE)
-      .then((res) => {
-        setMovieData(res.data.results);
-      })
-      .catch((err) => console.log(err));
-    return randomResult;
-  };
   const getMovieData = async () => {
     const result = await axios
       .get(MOVIE_API_URL)
@@ -204,9 +193,11 @@ const Results = () => {
   return (
     <div className="wrapper-result">
       {weatherData && <Result result={weatherData} />}
-      {movieData && <p>{movieData[randomMovie].vote_average}</p>}
       <Button onClick={() => getMovieData()}>Random Movie</Button>
-      {movieData && <p>{movieData[randomMovie].title}</p>}
+      {movieData && (
+        <p id="movie-imdb">{movieData[randomMovie].vote_average}</p>
+      )}
+      {movieData && <p id="movie-title">{movieData[randomMovie].title}</p>}
       {movieData && (
         <img
           src={`https://image.tmdb.org/t/p/w400${movieData[randomMovie].poster_path}`}
@@ -214,7 +205,6 @@ const Results = () => {
           alt="Poster is not found!"
         />
       )}
-
       {!movieData && <img src={loading} id="loading-gif" alt="loading" />}
     </div>
   );

@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: center;
 }
-
 @keyframes changePosition {
   from {
     transform: translate(0, 5px);
@@ -35,4 +34,24 @@ hr {
   width: 100%;
   border-top: 1px solid white;
   opacity: 0.4;
+}
+#poster {
+  max-width: 70%;
+  color: red;
+  font-size: 24px;
+}
+#movie-imdb,
+#movie-title {
+  color: tomato;
+  font-size: 24px;
+  margin: 8px 0px;
+}
+#loading-gif {
+  max-width: 10%;
+}
+@media screen and (max-width: 768px) {
+  .weather-text-container {
+    top: 10px;
+    font-size: 20px;
+  }
 }
