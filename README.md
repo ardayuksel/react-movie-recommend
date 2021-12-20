@@ -38,5 +38,18 @@ Recommendation is created by algorithmic calculation of emotional mode and minim
 
 # TO-DO ⏰
 
+- Combining with current weather status algorithm
 - Should improve API calls
 - Make a better folder structure
+
+# Screenshot  🖥
+
+https://user-images.githubusercontent.com/22565318/146827321-801e5e1d-92be-4939-a999-59e58c494cee.mov
+
+
+
+
+
+
+
+
